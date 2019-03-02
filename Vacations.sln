@@ -5,7 +5,7 @@ VisualStudioVersion = 15.0.28010.2019
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "VacationsDB", "VacationsDB", "{6A2AB0F9-6326-4050-AF51-9DBF3D9A0F81}"
 EndProject
-Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "VacationsDB", "..\VacanciesDB\VacationsDB.sqlproj", "{089E18E9-85A4-4DEB-8284-1DA26E2BCC4B}"
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "VacationsDB", "..\VacationsDB\VacationsDB.sqlproj", "{089E18E9-85A4-4DEB-8284-1DA26E2BCC4B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
