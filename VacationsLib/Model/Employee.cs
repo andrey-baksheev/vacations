@@ -22,9 +22,7 @@ namespace VacationsLib.Model
         }
     
         public int EmployeeId { get; set; }
-        public string Lastname { get; set; }
-        public string Firstname { get; set; }
-        public string Secondname { get; set; }
+        public string Fullname { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<EmpAttribute> EmpAttributes { get; set; }

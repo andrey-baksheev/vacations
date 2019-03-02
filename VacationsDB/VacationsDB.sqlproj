@@ -58,11 +58,13 @@
   <ItemGroup>
     <Folder Include="Properties" />
     <Folder Include="Tables" />
+    <Folder Include="Alter" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="Tables\tEmployees.sql" />
     <Build Include="Tables\tAttributes.sql" />
     <Build Include="Tables\tEmpAttributes.sql" />
     <Build Include="Tables\tVacations.sql" />
+    <Build Include="Alter\AlterEmployee.sql" />
   </ItemGroup>
 </Project>
