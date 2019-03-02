@@ -1,0 +1,274 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Хранилище Model" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="tAttributes">
+          <Key>
+            <PropertyRef Name="AttributeId" />
+          </Key>
+          <Property Name="AttributeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="256" Nullable="false" />
+        </EntityType>
+        <!--Ошибки, обнаруженные при создании:
+предупреждение 6002: В таблице или представлении "Vacations.dbo.tEmpAttributes" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
+        <EntityType Name="tEmpAttributes">
+          <Key>
+            <PropertyRef Name="EmployeeId" />
+            <PropertyRef Name="AttributeId" />
+            <PropertyRef Name="Value" />
+          </Key>
+          <Property Name="EmployeeId" Type="int" Nullable="false" />
+          <Property Name="AttributeId" Type="int" Nullable="false" />
+          <Property Name="Value" Type="nvarchar" MaxLength="256" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tEmployees">
+          <Key>
+            <PropertyRef Name="EmployeeId" />
+          </Key>
+          <Property Name="EmployeeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Lastname" Type="nvarchar" MaxLength="256" Nullable="false" />
+          <Property Name="Firstname" Type="nvarchar" MaxLength="256" Nullable="false" />
+          <Property Name="Secondname" Type="nvarchar" MaxLength="256" />
+        </EntityType>
+        <EntityType Name="tVacations">
+          <Key>
+            <PropertyRef Name="VacationId" />
+          </Key>
+          <Property Name="VacationId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EmployeeId" Type="int" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="256" Nullable="false" />
+          <Property Name="StartDate" Type="date" Nullable="false" />
+          <Property Name="Duration" Type="smallint" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_tEmpAttributes_tAttributes">
+          <End Role="tAttributes" Type="Self.tAttributes" Multiplicity="1" />
+          <End Role="tEmpAttributes" Type="Self.tEmpAttributes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tAttributes">
+              <PropertyRef Name="AttributeId" />
+            </Principal>
+            <Dependent Role="tEmpAttributes">
+              <PropertyRef Name="AttributeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tEmpAttributes_tEmployees">
+          <End Role="tEmployees" Type="Self.tEmployees" Multiplicity="1" />
+          <End Role="tEmpAttributes" Type="Self.tEmpAttributes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tEmployees">
+              <PropertyRef Name="EmployeeId" />
+            </Principal>
+            <Dependent Role="tEmpAttributes">
+              <PropertyRef Name="EmployeeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tVacations_tEmployees">
+          <End Role="tEmployees" Type="Self.tEmployees" Multiplicity="1" />
+          <End Role="tVacations" Type="Self.tVacations" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tEmployees">
+              <PropertyRef Name="EmployeeId" />
+            </Principal>
+            <Dependent Role="tVacations">
+              <PropertyRef Name="EmployeeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Хранилище ModelContainer">
+          <EntitySet Name="tAttributes" EntityType="Self.tAttributes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tEmployees" EntityType="Self.tEmployees" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tVacations" EntityType="Self.tVacations" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tEmpAttributes" EntityType="Self.tEmpAttributes" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [tEmpAttributes].[EmployeeId] AS [EmployeeId], 
+    [tEmpAttributes].[AttributeId] AS [AttributeId], 
+    [tEmpAttributes].[Value] AS [Value]
+    FROM [dbo].[tEmpAttributes] AS [tEmpAttributes]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK_tEmpAttributes_tAttributes" Association="Self.FK_tEmpAttributes_tAttributes">
+            <End Role="tAttributes" EntitySet="tAttributes" />
+            <End Role="tEmpAttributes" EntitySet="tEmpAttributes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tEmpAttributes_tEmployees" Association="Self.FK_tEmpAttributes_tEmployees">
+            <End Role="tEmployees" EntitySet="tEmployees" />
+            <End Role="tEmpAttributes" EntitySet="tEmpAttributes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tVacations_tEmployees" Association="Self.FK_tVacations_tEmployees">
+            <End Role="tEmployees" EntitySet="tEmployees" />
+            <End Role="tVacations" EntitySet="tVacations" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Attribute">
+          <Key>
+            <PropertyRef Name="AttributeId" />
+          </Key>
+          <Property Name="AttributeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Description" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="EmpAttributes" Relationship="Self.FK_tEmpAttributes_tAttributes" FromRole="tAttributes" ToRole="tEmpAttributes" />
+        </EntityType>
+        <EntityType Name="Employee">
+          <Key>
+            <PropertyRef Name="EmployeeId" />
+          </Key>
+          <Property Name="EmployeeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Lastname" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Firstname" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Secondname" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="EmpAttributes" Relationship="Self.FK_tEmpAttributes_tEmployees" FromRole="tEmployees" ToRole="tEmpAttributes" />
+          <NavigationProperty Name="Vacations" Relationship="Self.FK_tVacations_tEmployees" FromRole="tEmployees" ToRole="tVacations" />
+        </EntityType>
+        <EntityType Name="Vacation">
+          <Key>
+            <PropertyRef Name="VacationId" />
+          </Key>
+          <Property Name="VacationId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EmployeeId" Type="Int32" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="StartDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Duration" Type="Int16" Nullable="false" />
+          <NavigationProperty Name="Employee" Relationship="Self.FK_tVacations_tEmployees" FromRole="tVacations" ToRole="tEmployees" />
+        </EntityType>
+        <EntityType Name="EmpAttribute">
+          <Key>
+            <PropertyRef Name="EmployeeId" />
+            <PropertyRef Name="AttributeId" />
+            <PropertyRef Name="Value" />
+          </Key>
+          <Property Name="EmployeeId" Type="Int32" Nullable="false" />
+          <Property Name="AttributeId" Type="Int32" Nullable="false" />
+          <Property Name="Value" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Attribute" Relationship="Self.FK_tEmpAttributes_tAttributes" FromRole="tEmpAttributes" ToRole="tAttributes" />
+          <NavigationProperty Name="Employee" Relationship="Self.FK_tEmpAttributes_tEmployees" FromRole="tEmpAttributes" ToRole="tEmployees" />
+        </EntityType>
+        <Association Name="FK_tEmpAttributes_tAttributes">
+          <End Role="tAttributes" Type="Model.Attribute" Multiplicity="1" />
+          <End Role="tEmpAttributes" Type="Model.EmpAttribute" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tAttributes">
+              <PropertyRef Name="AttributeId" />
+            </Principal>
+            <Dependent Role="tEmpAttributes">
+              <PropertyRef Name="AttributeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tEmpAttributes_tEmployees">
+          <End Role="tEmployees" Type="Model.Employee" Multiplicity="1" />
+          <End Role="tEmpAttributes" Type="Model.EmpAttribute" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tEmployees">
+              <PropertyRef Name="EmployeeId" />
+            </Principal>
+            <Dependent Role="tEmpAttributes">
+              <PropertyRef Name="EmployeeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tVacations_tEmployees">
+          <End Role="tEmployees" Type="Model.Employee" Multiplicity="1" />
+          <End Role="tVacations" Type="Model.Vacation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tEmployees">
+              <PropertyRef Name="EmployeeId" />
+            </Principal>
+            <Dependent Role="tVacations">
+              <PropertyRef Name="EmployeeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="VacationsContext" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Attributes" EntityType="Model.Attribute" />
+          <EntitySet Name="Employees" EntityType="Model.Employee" />
+          <EntitySet Name="Vacations" EntityType="Model.Vacation" />
+          <EntitySet Name="EmpAttributes" EntityType="Model.EmpAttribute" />
+          <AssociationSet Name="FK_tEmpAttributes_tAttributes" Association="Self.FK_tEmpAttributes_tAttributes">
+            <End Role="tAttributes" EntitySet="Attributes" />
+            <End Role="tEmpAttributes" EntitySet="EmpAttributes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tEmpAttributes_tEmployees" Association="Self.FK_tEmpAttributes_tEmployees">
+            <End Role="tEmployees" EntitySet="Employees" />
+            <End Role="tEmpAttributes" EntitySet="EmpAttributes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tVacations_tEmployees" Association="Self.FK_tVacations_tEmployees">
+            <End Role="tEmployees" EntitySet="Employees" />
+            <End Role="tVacations" EntitySet="Vacations" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище ModelContainer" CdmEntityContainer="VacationsContext">
+          <EntitySetMapping Name="Attributes">
+            <EntityTypeMapping TypeName="Model.Attribute">
+              <MappingFragment StoreEntitySet="tAttributes">
+                <ScalarProperty Name="AttributeId" ColumnName="AttributeId" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Employees">
+            <EntityTypeMapping TypeName="Model.Employee">
+              <MappingFragment StoreEntitySet="tEmployees">
+                <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
+                <ScalarProperty Name="Lastname" ColumnName="Lastname" />
+                <ScalarProperty Name="Firstname" ColumnName="Firstname" />
+                <ScalarProperty Name="Secondname" ColumnName="Secondname" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Vacations">
+            <EntityTypeMapping TypeName="Model.Vacation">
+              <MappingFragment StoreEntitySet="tVacations">
+                <ScalarProperty Name="VacationId" ColumnName="VacationId" />
+                <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+                <ScalarProperty Name="Duration" ColumnName="Duration" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EmpAttributes">
+            <EntityTypeMapping TypeName="Model.EmpAttribute">
+              <MappingFragment StoreEntitySet="tEmpAttributes">
+                <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
+                <ScalarProperty Name="AttributeId" ColumnName="AttributeId" />
+                <ScalarProperty Name="Value" ColumnName="Value" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
