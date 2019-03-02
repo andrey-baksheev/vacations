@@ -6,8 +6,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{1EC0A4C3-FD56-4638-A31A-F610D6AF24FC}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>VacanciesCommon</RootNamespace>
-    <AssemblyName>VacanciesCommon</AssemblyName>
+    <RootNamespace>VacationsCommon</RootNamespace>
+    <AssemblyName>VacationsCommon</AssemblyName>
     <TargetFrameworkVersion>v4.7</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
