@@ -78,6 +78,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>VacationsContext.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Partial\Employee.cs" />
     <Compile Include="Partial\Vacation.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

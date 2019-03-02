@@ -16,7 +16,6 @@ namespace VacationsLib.Model
     {
         public int VacationId { get; set; }
         public int EmployeeId { get; set; }
-        public string Description { get; set; }
         public System.DateTime StartDate { get; set; }
         public short Duration { get; set; }
     

@@ -37,7 +37,6 @@
           </Key>
           <Property Name="VacationId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="EmployeeId" Type="int" Nullable="false" />
-          <Property Name="Description" Type="nvarchar" MaxLength="256" Nullable="false" />
           <Property Name="StartDate" Type="date" Nullable="false" />
           <Property Name="Duration" Type="smallint" Nullable="false" />
         </EntityType>
@@ -128,7 +127,6 @@
           </Key>
           <Property Name="VacationId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="EmployeeId" Type="Int32" Nullable="false" />
-          <Property Name="Description" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="StartDate" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="Duration" Type="Int16" Nullable="false" />
           <NavigationProperty Name="Employee" Relationship="Self.FK_tVacations_tEmployees" FromRole="tVacations" ToRole="tEmployees" />
@@ -226,7 +224,6 @@
               <MappingFragment StoreEntitySet="tVacations">
                 <ScalarProperty Name="VacationId" ColumnName="VacationId" />
                 <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
-                <ScalarProperty Name="Description" ColumnName="Description" />
                 <ScalarProperty Name="StartDate" ColumnName="StartDate" />
                 <ScalarProperty Name="Duration" ColumnName="Duration" />
               </MappingFragment>
