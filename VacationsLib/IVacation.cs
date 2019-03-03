@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using VacationsLib.Model;
 
 namespace VacationsLib
@@ -12,5 +13,6 @@ namespace VacationsLib
 
         Employee FindEmployee(Int32 id);
         Vacation FindVacation(Int32 id);
+        IEnumerable<Employee> SelectAllEmployees();
     }
 }

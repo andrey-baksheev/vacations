@@ -137,5 +137,28 @@ namespace VacationsApp
 
             return vacation;
         }
+
+        public IEnumerable<Employee> SelectAllEmployees()
+        {
+            var employees = new List<Employee>();
+            try
+            {
+                using (VacationsContext context = new VacationsContext())
+                {
+                    VacationsLib.Model. Attribute attribute = context.Attributes.Where(p => p.Description.Contains("Colour")).Single();
+                    employees = context.Employees
+                                       .Include("Vacations")
+                                       .Include("EmpAttributes")
+                                       //.Where(p=>p.EmpAttributes.Where(e=>e.AttributeId==attribute.AttributeId).Single())
+                                       .ToList();
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+            }
+
+            return employees;
+        }
     }
 }

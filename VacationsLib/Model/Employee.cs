@@ -11,7 +11,8 @@ namespace VacationsLib.Model
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.Runtime.Serialization;
+
     public partial class Employee
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -20,12 +21,15 @@ namespace VacationsLib.Model
             this.EmpAttributes = new HashSet<EmpAttribute>();
             this.Vacations = new HashSet<Vacation>();
         }
-    
+
+        [DataMember(Name = "EmployeeId", Order = 1)]
         public int EmployeeId { get; set; }
+        [DataMember(Name = "Fullname", Order = 2)]
         public string Fullname { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<EmpAttribute> EmpAttributes { get; set; }
+        [DataMember(Name = "Vacations", Order = 3)]
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Vacation> Vacations { get; set; }
     }

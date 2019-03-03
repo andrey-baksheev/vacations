@@ -4,40 +4,54 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using VacationsLib;
 using VacationsLib.Model;
 
 namespace VacationsService.Controllers
 {
     public class VacationsController : ApiController
     {
-        public IEnumerable<Employee> GetEmployees()
+        public IHttpActionResult Get()
         {
-            throw new NotImplementedException();
+            IVacation provider = new VacationsProvider();
+            List<Employee> employees = provider.SelectAllEmployees().ToList();
+
+            /*var reports = (from emp in employees
+                           select new
+                           {
+                               emp.Fullname,
+                               emp.Vacations
+                           });*/
+            if (employees.Count == 0)
+            {
+                return NotFound();
+            }
+
+            //return Ok(reports);
+            return Ok(employees);
         }
 
-        public IEnumerable<Vacation> GetVacation()
+        public void AddEmployee(Employee employee)
         {
-            throw new NotImplementedException();
+            IVacation provider = new VacationsProvider();
         }
 
-        public void AddEmployee(String fullname)
-        { 
-        
+        public void AddVacation(Employee employee, Vacation vacation)
+        {
+            IVacation provider = new VacationsProvider();
+            provider.CreateVacation(employee, vacation);
         }
 
-        public void AddVacation()
+        public void DeleteEmployee(Employee employee)
         {
-
+            IVacation provider = new VacationsProvider();
+            provider.DeleteEmployee(employee);
         }
 
-        public void DeleteEmployee()
+        public void DeleteVacation(Vacation vacation)
         {
-
-        }
-
-        public void DeleteVacation()
-        {
-
+            IVacation provider = new VacationsProvider();
+            provider.DeleteVacation(vacation);
         }
     }
 }

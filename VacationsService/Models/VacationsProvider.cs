@@ -137,5 +137,23 @@ namespace VacationsService
 
             return vacation;
         }
+
+        public IEnumerable<Employee> SelectAllEmployees()
+        {
+            var employees = new List<Employee>();
+            try
+            {
+                using (VacationsContext context = new VacationsContext())
+                {
+                    employees = context.Employees.Include("Vacations").ToList();
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+            }
+
+            return employees;
+        }
     }
 }
