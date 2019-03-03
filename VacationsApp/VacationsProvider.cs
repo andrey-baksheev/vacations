@@ -40,13 +40,10 @@ namespace VacationsApp
             {
                 using (VacationsContext context = new VacationsContext())
                 {
-                    Employee selectedEmployee = context.Employees.FirstOrDefault(p => p.EmployeeId == employee.EmployeeId);
-                    if (selectedEmployee != null)
-                    {
-                        selectedEmployee.Vacations.Add(vacation);
-                        Int32 result = context.SaveChanges();
-                        Console.WriteLine("Result: {0}", result);
-                    }
+                    context.Employees.Attach(employee);
+                    employee.Vacations.Add(vacation);
+                    Int32 result = context.SaveChanges();
+                    Console.WriteLine("Result: {0}", result);
                 }
             }
             catch (System.Data.Entity.Validation.DbEntityValidationException ex)

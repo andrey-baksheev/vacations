@@ -9,20 +9,20 @@ namespace VacationsApp
     {
         static void Main(string[] args)
         {
-            String fullname = "Sidorov Ivan";
+            //String fullname = "Sidorov Ivan";
             IVacation provider = new VacationsProvider();
             
             // New Employee
-            provider.CreateEmployee(fullname);
+            //provider.CreateEmployee(fullname);
 
 
             // Add vacation
-            /*Employee employee = provider.FindEmployee(1);
+            Employee employee = provider.FindEmployee(1002);
             if (employee != null)
             { 
-                Vacation vacation = new Vacation(new DateTime(2019, 6, 15), 14);
+                Vacation vacation = new Vacation(new DateTime(2020, 7, 30), 14);
                 provider.CreateVacation(employee, vacation);
-            } */
+            }
 
 
             // Delete Employee
