@@ -67,5 +67,6 @@
     <Build Include="Tables\tVacations.sql" />
     <Build Include="Alter\AlterEmployee.sql" />
     <Build Include="Alter\AlterVacation.sql" />
+    <Build Include="Alter\AlterEmpAttribute.sql" />
   </ItemGroup>
 </Project>
