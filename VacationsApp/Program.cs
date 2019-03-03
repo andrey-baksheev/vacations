@@ -11,18 +11,18 @@ namespace VacationsApp
         {
             //String fullname = "Sidorov Ivan";
             IVacation provider = new VacationsProvider();
-            
+
             // New Employee
             //provider.CreateEmployee(fullname);
 
 
             // Add vacation
-            Employee employee = provider.FindEmployee(1002);
+            /*Employee employee = provider.FindEmployee(1003);
             if (employee != null)
             { 
-                Vacation vacation = new Vacation(new DateTime(2020, 7, 30), 14);
+                Vacation vacation = new Vacation(new DateTime(2020, 3, 31), 2);
                 provider.CreateVacation(employee, vacation);
-            }
+            }*/
 
 
             // Delete Employee
@@ -31,6 +31,12 @@ namespace VacationsApp
             {
                 provider.DeleteEmployee(employee);
             } */
-        }         
+
+            Vacation vacation = provider.FindVacation(2);
+            if (vacation != null)
+            {
+                provider.DeleteVacation(vacation);
+            }
+        }
     }    
 }

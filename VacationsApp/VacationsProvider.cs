@@ -89,6 +89,7 @@ namespace VacationsApp
             {
                 using (VacationsContext context = new VacationsContext())
                 {
+                    context.Vacations.Attach(vacation);
                     context.Vacations.Remove(vacation);
                     Int32 result = context.SaveChanges();
                     Console.WriteLine("Result: {0}", result);
@@ -117,6 +118,24 @@ namespace VacationsApp
             }
 
             return employee;
+        }
+
+        public Vacation FindVacation(Int32 id)
+        {
+            Vacation vacation = null;
+            try
+            {
+                using (VacationsContext context = new VacationsContext())
+                {
+                    vacation = context.Vacations.Where(p => p.VacationId == id).Single();
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+            }
+
+            return vacation;
         }
     }
 }

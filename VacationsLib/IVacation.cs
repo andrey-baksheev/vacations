@@ -11,5 +11,6 @@ namespace VacationsLib
         void DeleteVacation(Vacation vacation);
 
         Employee FindEmployee(Int32 id);
+        Vacation FindVacation(Int32 id);
     }
 }
