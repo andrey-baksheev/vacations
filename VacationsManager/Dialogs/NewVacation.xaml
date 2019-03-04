@@ -1,0 +1,23 @@
+﻿<Window x:Class="VacationsManager.Dialogs.NewVacation"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:VacationsManager.Dialogs"
+        mc:Ignorable="d"
+        Title="NewVacation" Height="450" Width="800">
+    <StackPanel Orientation="Vertical" >
+        <StackPanel.Resources>
+            <Style x:Key="buttonStyle">
+                <Setter Property="Button.FontSize" Value="14"/>
+                <Setter Property="Button.Background" Value="Purple"/>
+                <Setter Property="Button.Foreground" Value="White"/>
+                <Setter Property="Button.Height" Value="50"/>
+                <Setter Property="Button.Width" Value="50"/>
+            </Style>
+        </StackPanel.Resources>
+        <DatePickerTextBox></DatePickerTextBox>
+        <Button Style="{StaticResource buttonStyle}">OK</Button>
+        <Button Style="{StaticResource buttonStyle}">Cancel</Button>
+    </StackPanel>
+</Window>
