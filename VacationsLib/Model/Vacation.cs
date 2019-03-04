@@ -12,7 +12,7 @@ namespace VacationsLib.Model
     using System;
     using System.Collections.Generic;
     using System.Runtime.Serialization;
-
+    
     public partial class Vacation
     {
         [DataMember(Name = "VacationId", Order = 1)]
@@ -22,6 +22,8 @@ namespace VacationsLib.Model
         public System.DateTime StartDate { get; set; }
         [DataMember(Name = "Duration", Order = 3)]
         public short Duration { get; set; }
+        [DataMember(Name = "EndDate", Order = 4)]
+        public System.DateTime EndDate { get; set; }
     
         public virtual Employee Employee { get; set; }
     }
