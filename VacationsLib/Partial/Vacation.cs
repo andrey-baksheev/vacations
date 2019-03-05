@@ -7,9 +7,6 @@ namespace VacationsLib.Model
     [Serializable]
     public partial class Vacation
     {           
-        /*[DataMember(Name ="EndDate", Order =4)]
-        public DateTime EndDate { get; private set; }*/
-
         public Vacation() 
         {
            
@@ -18,7 +15,6 @@ namespace VacationsLib.Model
         {
             this.StartDate = startDate;
             this.Duration = duration;
-            this.EndDate = startDate.AddDays(duration);
         }        
     } 
 }

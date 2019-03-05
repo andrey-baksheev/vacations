@@ -39,6 +39,7 @@
           <Property Name="EmployeeId" Type="int" Nullable="false" />
           <Property Name="StartDate" Type="date" Nullable="false" />
           <Property Name="Duration" Type="smallint" Nullable="false" />
+          <Property Name="EndDate" Type="date" StoreGeneratedPattern="Computed" />
         </EntityType>
         <Association Name="FK_tEmpAttributes_tAttributes">
           <End Role="tAttributes" Type="Self.tAttributes" Multiplicity="1" />
@@ -65,7 +66,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_tVacations_tEmployees">
-          <End Role="tEmployees" Type="Self.tEmployees" Multiplicity="1" />
+          <End Role="tEmployees" Type="Self.tEmployees" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="tVacations" Type="Self.tVacations" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="tEmployees">
@@ -130,7 +133,7 @@
           <Property Name="StartDate" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="Duration" Type="Int16" Nullable="false" />
           <NavigationProperty Name="Employee" Relationship="Self.FK_tVacations_tEmployees" FromRole="tVacations" ToRole="tEmployees" />
-          <Property Name="EndDate" Type="DateTime" Nullable="false" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="EndDate" Type="DateTime" annotation:StoreGeneratedPattern="Computed" Precision="0" />
         </EntityType>
         <EntityType Name="EmpAttribute">
           <Key>
@@ -223,6 +226,7 @@
           <EntitySetMapping Name="Vacations">
             <EntityTypeMapping TypeName="Model.Vacation">
               <MappingFragment StoreEntitySet="tVacations">
+                <ScalarProperty Name="EndDate" ColumnName="EndDate" />
                 <ScalarProperty Name="VacationId" ColumnName="VacationId" />
                 <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
                 <ScalarProperty Name="StartDate" ColumnName="StartDate" />

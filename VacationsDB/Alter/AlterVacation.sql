@@ -19,3 +19,7 @@ ADD CONSTRAINT FK_tVacations_tEmployees FOREIGN KEY (EmployeeId)
     ON DELETE CASCADE
     ON UPDATE NO ACTION;
 GO
+
+ALTER TABLE [dbo].[tVacations]
+ ADD EndDate AS (DATEADD(day, [Duration], [StartDate]));
+ GO  
